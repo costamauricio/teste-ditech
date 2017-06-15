@@ -2,6 +2,8 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
+session_start();
+
 $app = new \Slim\App([
     'settings' => [
         'displayErrorDetails' => true,
@@ -32,6 +34,10 @@ $container['db'] = function($container) use($capsule) {
     return $capsule;
 };
 
+$container['auth'] = function($container) {
+    return new \App\Auth();
+};
+
 /**
  * Configuração do Twig
  */
@@ -47,11 +53,23 @@ $container['view'] = function($container) {
         )
     );
 
+    $view->getEnvironment()->addGlobal("auth", [
+        'check' => $container->auth->check(),
+        'usuario' => $container->auth->usuario()
+    ]);
+
     return $view;
 };
 
+/**
+ * Declaração dos controllers
+ */
 $container['IndexController'] = function($container) {
     return new \App\Controllers\IndexController($container);
+};
+
+$container['AuthController'] = function($container) {
+    return new \App\Controllers\AuthController($container);
 };
 
 /**

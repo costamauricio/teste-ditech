@@ -6,5 +6,5 @@ use \Illuminate\Database\Eloquent\Model as Base;
 
 class Model extends Base
 {
-
+    public $timestamps = false;
 }

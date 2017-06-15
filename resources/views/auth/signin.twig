@@ -1,0 +1,25 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+<!-- <div class="ui three column centered grid">
+    <div class="column"> -->
+        <div class="ui attached message">
+            <div class="header">
+                Login
+            </div>
+        </div>
+        <form class="ui form attached fluid segment" action="{{ path_for("auth.signin") }}" method="post">
+            <div class="field">
+                <label>E-mail</label>
+                <input type="email" name="email" placeholder="email@dominio.com">
+            </div>
+            <div class="field">
+                <label>Senha</label>
+                <input type="password" name="senha" placeholder="*************">
+            </div>
+            <button class="ui primary button" type="submit">Entrar</button>
+            <a class="ui button" href="{{ path_for("auth.signup") }}">Novo Usuário</a>
+        </form>
+    <!-- </div>
+</div> -->
+{% endblock %}
