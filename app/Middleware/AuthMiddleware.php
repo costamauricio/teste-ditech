@@ -12,7 +12,6 @@ class AuthMiddleware extends Middleware
             return $response->withRedirect( $this->container->router->pathFor("auth.signin") );
         }
 
-        $response = $next($request, $response);
-        return $response;
+        return $next($request, $response);
     }
 }

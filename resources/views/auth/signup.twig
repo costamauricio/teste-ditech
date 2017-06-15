@@ -9,17 +9,32 @@
             </div>
         </div>
         <form class="ui form attached fluid segment" action="{{ path_for("auth.signup") }}" method="post">
-            <div class="field">
+            <div class="field {{ erros.nome ? " error" : ''}}">
                 <label for="nome">Nome</label>
-                <input type="text" name="nome" placeholder="Nome Completo">
+                <input type="text" name="nome" value="{{ old.nome }}" placeholder="Nome Completo">
+                {% if erros.nome %}
+                    <div class="ui pointing label">
+                        {{ erros.nome | first }}
+                    </div>
+                {% endif %}
             </div>
-            <div class="field">
-                <label>E-mail</label>
-                <input type="email" name="email" placeholder="email@dominio.com">
+            <div class="field {{ erros.email ? " error" : ''}}">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" value="{{ old.email }}" placeholder="email@dominio.com">
+                {% if erros.email %}
+                    <div class="ui pointing label">
+                        {{ erros.email | first }}
+                    </div>
+                {% endif %}
             </div>
-            <div class="field">
-                <label>Senha</label>
-                <input type="password" name="senha" placeholder="*************">
+            <div class="field {{ erros.senha ? " error" : ''}}">
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" value="{{ old.senha }}" placeholder="*************">
+                {% if erros.senha %}
+                    <div class="ui pointing label">
+                        {{ erros.senha | first }}
+                    </div>
+                {% endif %}
             </div>
             <button class="ui primary button" type="submit">Cadastrar</button>
         </form>

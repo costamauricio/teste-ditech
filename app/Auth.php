@@ -22,6 +22,10 @@ class Auth
      */
     public function usuario()
     {
+        if (empty($_SESSION['usuario'])) {
+            return null;
+        }
+        
         return Usuario::find($_SESSION['usuario']);
     }
 

@@ -10,28 +10,33 @@
     </head>
     <body>
         <div class="ui fixed inverted menu">
-          <div class="ui container">
-            <a class="item">
-              <i class="home icon"></i> Home
-            </a>
-            <a class="item">
-              <i class="grid layout icon"></i> Browse
-            </a>
-            <a class="item">
-              <i class="mail icon"></i> Messages
-            </a>
-            <div class="ui simple dropdown item">
-              More
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <a class="item"><i class="edit icon"></i> Edit Profile</a>
-                <a class="item"><i class="globe icon"></i> Choose Language</a>
-                <a class="item"><i class="settings icon"></i> Account Settings</a>
-              </div>
+            <div class="ui fluid container">
+                <div class="header item">
+                    Teste Ditech
+                </div>
+                {% if auth.check %}
+                    <a class="item">
+                      <i class="calendar icon"></i> Agenda
+                    </a>
+                    <a class="item">
+                      <i class="list icon"></i> Salas
+                    </a>
+                    <div class="right menu">
+                        <div class="item">
+                            {{ auth.usuario.nome }}
+                        </div>
+                        <a class="item" href="{{ path_for("auth.signout") }}">Sair</a>
+                    </div>
+                {% else %}
+                    <div class="right menu">
+                        <a class="item" href="{{ path_for("auth.signin") }}">Login</a>
+                        <a class="item" href="{{ path_for("auth.signup") }}">Novo Usuário</a>
+                    </div>
+                {% endif %}
             </div>
-          </div>
         </div>
         <div class="ui main container">
+            {% include 'templates/flash.twig' %}
             {% block content %}{% endblock %}
         </div>
     </body>

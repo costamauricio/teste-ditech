@@ -17,7 +17,7 @@ $app = new \Slim\App([
             'charset' => "utf8",
             'collation' => "utf8_unicode_ci",
         ]
-    ],
+    ]
 ]);
 
 $container = $app->getContainer();
@@ -29,10 +29,6 @@ $capsule = new \Illuminate\Database\Capsule\Manager;
 $capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
-
-$container['db'] = function($container) use($capsule) {
-    return $capsule;
-};
 
 $container['auth'] = function($container) {
     return new \App\Auth();
@@ -53,12 +49,31 @@ $container['view'] = function($container) {
         )
     );
 
+    /**
+     * Seta o controle do usuário logado para acesso nas views
+     */
     $view->getEnvironment()->addGlobal("auth", [
         'check' => $container->auth->check(),
         'usuario' => $container->auth->usuario()
     ]);
 
+    /**
+     * Seta as mensagens
+     */
+    $view->getEnvironment()->addGlobal("flash", $container->flash);
+
     return $view;
+};
+
+/**
+ * Registra os providers
+ */
+$container['validator'] = function($container) {
+    return new \App\Validator();
+};
+
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages();
 };
 
 /**
@@ -71,6 +86,12 @@ $container['IndexController'] = function($container) {
 $container['AuthController'] = function($container) {
     return new \App\Controllers\AuthController($container);
 };
+
+/**
+ * Define os middlewares
+ */
+$app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
+$app->add(new \App\Middleware\InputValuesMiddleware($container));
 
 /**
  * Carregamento das rotas
