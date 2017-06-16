@@ -1,5 +1,68 @@
 {% extends 'templates/app.twig' %}
 
 {% block content %}
-index
+<link rel="stylesheet" href="{{ base_url() }}/css/agenda.css">
+<script type="text/javascript" src="{{ base_url() }}/js/agenda.js"></script>
+<script type="text/javascript" src="{{ base_url() }}/js/salas.js"></script>
+<script type="text/javascript" src="{{ base_url() }}/js/horarios.js"></script>
+<script type="text/javascript" src="{{ base_url() }}/js/reservas.js"></script>
+<div class="cabecalho-controles">
+    <div class="column">
+        <div class="ui buttons">
+            <button id="back" class="ui labeled icon button" title="Semana Anterior">
+                <i class="left chevron icon"></i>
+                &nbsp;
+            </button>
+            <button id="forward" class="ui right labeled icon button" title="Proxima Semana">
+                <i class="right chevron icon"></i>
+                &nbsp;
+            </button>
+        </div>
+    </div>
+
+    <div class="lista-legenda">
+        <div class="">Minhas Reservas</div>
+    </div>
+</div>
+<table id="agenda" class="ui fixed very basic celled fluid table">
+
+</table>
+
+<div id="adicionar-reserva" class="ui small modal">
+    <div class="header">
+        Reservar Sala
+    </div>
+    <div class="content">
+        <form class="ui form">
+            <p>Horário: <span id="horario-reservar"></span></p>
+            <p>Usuário: {{ auth.usuario.nome }}</p>
+            <div class="ui two fields">
+                <div class="field">
+                    <label>Sala</label>
+                    <select id="salas-disponiveis" class="ui fluid dropdown">
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div id="confirmar-reserva" class="ui primary button">Reservar</div>
+        <div class="ui cancel button">Cancelar</div>
+    </div>
+</div>
+
+<div id="detalhes-reserva" class="ui small modal">
+    <div class="header">
+        Reservar Sala
+    </div>
+    <div class="content">
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+    <div class="actions">
+        <div id="excluir-reserva" class="ui primary button">Excluir</div>
+        <div class="ui cancel button">Fechar</div>
+    </div>
+</div>
 {% endblock %}

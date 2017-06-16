@@ -1,9 +1,20 @@
-{% if flash.getMessages %}
-    <div class="ui warning message">
-      <i class="close icon"></i>
-      <div class="header">
-        You must register before you can do that!
-      </div>
-      Visit our registration page, then try again
+{% if flash('error') %}
+    <div id="container-mensagens" class="ui container">
+        <div class="ui negative message">
+            <i class="close icon"></i>
+            <div class="header">
+                {{ flash('error') | first }}
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if flash('success') %}
+    <div id="container-mensagens" class="ui container">
+        <div class="ui success message">
+            <i class="close icon"></i>
+            <div class="header">
+                {{ flash('success') | first }}
+            </div>
+        </div>
     </div>
 {% endif %}

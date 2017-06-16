@@ -31,6 +31,11 @@ class AuthController extends Controller
             return $response->withRedirect( $this->container->router->pathFor("auth.signup") );
         }
 
+        if (Usuario::where("email", $request->getParam("email"))->exists()) {
+            $this->container->flash->addMessage("error", "Email já cadastrado.");
+            return $response->withRedirect( $this->container->router->pathFor("auth.signup") );
+        }
+
         $usuario = new Usuario();
 
         $usuario->nome = $request->getParam("nome");
@@ -63,6 +68,7 @@ class AuthController extends Controller
         );
 
         if (!$login) {
+            $this->container->flash->addMessage("error", "Usuário ou Senha inválidos.");
             return $response->withRedirect( $this->container->router->pathFor("auth.signin") );
         }
 

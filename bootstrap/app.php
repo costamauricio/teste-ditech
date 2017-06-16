@@ -60,7 +60,9 @@ $container['view'] = function($container) {
     /**
      * Seta as mensagens
      */
-    $view->getEnvironment()->addGlobal("flash", $container->flash);
+    $view->addExtension(new \Knlv\Slim\Views\TwigMessages(
+        new \Slim\Flash\Messages()
+    ));
 
     return $view;
 };
@@ -85,6 +87,14 @@ $container['IndexController'] = function($container) {
 
 $container['AuthController'] = function($container) {
     return new \App\Controllers\AuthController($container);
+};
+
+$container['SalaController'] = function($container) {
+    return new \App\Controllers\SalaController($container);
+};
+
+$container['ReservaController'] = function($container) {
+    return new \App\Controllers\ReservaController($container);
 };
 
 /**
