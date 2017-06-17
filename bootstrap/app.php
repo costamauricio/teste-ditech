@@ -4,16 +4,18 @@ require __DIR__ . "/../vendor/autoload.php";
 
 session_start();
 
+$config = parse_ini_file(__DIR__ . "/../config.ini");
+
 $app = new \Slim\App([
     'settings' => [
-        'displayErrorDetails' => true,
+        'displayErrorDetails' => $config["development"],
         'db' => [
             'driver' => "mysql",
-            'host' => "127.0.0.1",
-            'port' => 3306,
-            'database' => "agenda",
-            'username' => "root",
-            'password' => "root",
+            'host' => $config["host"],
+            'port' => $config["port"],
+            'database' => $config["database"],
+            'username' => $config["username"],
+            'password' => $config["password"],
             'charset' => "utf8",
             'collation' => "utf8_unicode_ci",
         ]
