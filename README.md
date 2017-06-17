@@ -13,7 +13,7 @@
 
 ## Executando via Docker
 
-* docker-compose up --buld -d
+* docker-compose up --build -d
 * docker-compose exec mysql /bin/sh -c 'mysql -u root -proot < /dump/init.sql'
 * Acessar no navegador http://localhost:8080
 
