@@ -97,6 +97,10 @@ $container['ReservaController'] = function($container) {
     return new \App\Controllers\ReservaController($container);
 };
 
+$container['UsuarioController'] = function($container) {
+    return new \App\Controllers\UsuarioController($container);
+};
+
 /**
  * Define os middlewares
  */

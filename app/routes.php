@@ -14,6 +14,7 @@ $app->group('', function() {
 
     $this->get("/", "IndexController:index")->setName('index');
     $this->get("/salas", "SalaController:getSalas");
+    $this->get("/usuarios/remover/{id}", "UsuarioController:remover")->setName("usuarios.remover");
     $this->get("/salas/listar", "SalaController:listar")->setName("salas.listar");
     $this->get("/salas/editar", "SalaController:editar")->setName("salas.nova");
     $this->post("/salas/editar", "SalaController:postEditar");

@@ -23,8 +23,14 @@
                       <i class="list icon"></i> Salas
                     </a>
                     <div class="right menu">
-                        <div class="item">
+                        <div class="ui simple dropdown item">
                             {{ auth.usuario.nome }}
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a id="delete-user" class="item" href="{{ path_for("usuarios.remover", { id : auth.usuario.id }) }}">
+                                    <i class="delete icon"></i> Excluir Conta
+                                </a>
+                            </div>
                         </div>
                         <a class="item" href="{{ path_for("auth.signout") }}">Sair</a>
                     </div>
