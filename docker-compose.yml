@@ -1,0 +1,22 @@
+version: "2"
+services:
+    php:
+        build: ./docker/phpfpm/
+        volumes:
+            - .:/usr/share/nginx/html
+    mysql:
+        image: mysql
+        ports:
+            - 3306:3306
+        volumes:
+            - ./dump:/dump
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+    nginx:
+        image: nginx:alpine
+        ports:
+          - 8080:80
+        volumes:
+            - .:/usr/share/nginx/html
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./docker/nginx/log:/var/log/nginx
