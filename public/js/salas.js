@@ -6,7 +6,7 @@
         "#ff8440",
         "#e94d33",
         "#c2a463",
-        "#529bb2",
+        "#fae666",
         "#58ebc2"
     ];
 
@@ -29,7 +29,7 @@
         var div = document.createElement("div");
         div.appendChild(document.createTextNode(nome));
         div.style["background-color"] = this.salas[id].cor;
-        
+
         $(".lista-legenda").append(div);
     }
 

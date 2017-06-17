@@ -61,7 +61,6 @@
 }
 
 .celula-agenda-add:hover {
-    /*transform: scale(1.2);*/
     background-color: #ccc;
     box-shadow: 0 3px 5px 0 #ccc
 }

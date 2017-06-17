@@ -1,0 +1,30 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+<div class="ui two column centered grid">
+    <div class="column">
+        <div class="ui attached message">
+            <div class="header">
+                {% if sala or old.id %}
+                    Editar Sala
+                {% else %}
+                    Nova Sala
+                {% endif %}
+            </div>
+        </div>
+        <form class="ui form attached fluid segment" action="{{ path_for("salas.nova") }}" method="post">
+            <input type="hidden" name="id" value="{{ sala.id }}{{ old.id }}">
+            <div class="field {{ erros.descricao ? " error" : ''}}">
+                <label for="descricao">Descrição</label>
+                <input type="text" name="descricao" value="{{ old.descricao }}{{ sala.descricao }}" placeholder="Descrição">
+                {% if erros.descricao %}
+                    <div class="ui pointing label">
+                        {{ erros.descricao | first }}
+                    </div>
+                {% endif %}
+            </div>
+            <button class="ui primary button" type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
