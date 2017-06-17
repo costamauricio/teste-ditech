@@ -1,16 +1,18 @@
-# Teste DITech
+# Teste Ditech
 
 ## Pré Requisitos
 
 * PHP >= 7.0
 * composer
-* Mysql
+* mysql
 
 ## Instalação
 
-* composer install
+* git clone https://github.com/costamauricio/teste-ditech.git
+* cd teste-ditech && composer install
 * Configurar os dados de conexão no arquivo config.ini
+* Rodar o arquivo da estrutura dump/init.sql
 
-## Rodar
+## Executando
 
-* cd public && php -S 127.0.0.1:8080
+* cd public && php -S 0.0.0.0:8080

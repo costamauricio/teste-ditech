@@ -21,7 +21,9 @@ insert into salas(descricao) values ("Sala 1"), ("Sala 2"), ("Sala 3");
 
 create table reservas(
     id bigint auto_increment primary key,
-    sala_id bigint not null references salas(id) on delete cascade,
-    usuario_id bigint not null references usuarios(id) on delete cascade,
-    inicio timestamp not null
+    sala_id bigint not null,
+    usuario_id bigint not null,
+    inicio timestamp not null,
+    constraint sala_id_fk foreign key(sala_id) references salas(id) on delete cascade,
+    constraint usuario_id_fk foreign key(usuario_id) references usuarios(id) on delete cascade
 );

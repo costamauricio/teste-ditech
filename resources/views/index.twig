@@ -34,8 +34,14 @@
     </div>
     <div class="content">
         <form class="ui form">
-            <p>Horário: <span id="horario-reservar"></span></p>
-            <p>Usuário: {{ auth.usuario.nome }}</p>
+            <p>
+                <h4 class="ui header">Horário</h4>
+                <span id="horario-reservar"></span>
+            </p>
+            <p>
+                <h4 class="ui header">Usuário</h4>
+                {{ auth.usuario.nome }}
+            </p>
             <div class="ui two fields">
                 <div class="field">
                     <label>Sala</label>
@@ -53,12 +59,21 @@
 
 <div id="detalhes-reserva" class="ui small modal">
     <div class="header">
-        Reservar Sala
+        Detalhes da Reserva
     </div>
     <div class="content">
-        <p></p>
-        <p></p>
-        <p></p>
+        <p>
+            <h4 class="ui header">Horário</h4>
+            <span id="horario-reservado"></span>
+        </p>
+        <p>
+            <h4 class="ui header">Usuário</h4>
+            <span id="usuario-reservado"></span>
+        </p>
+        <p>
+            <h4 class="ui header">Sala</h4>
+            <span id="sala-reservado"></span>
+        </p>
     </div>
     <div class="actions">
         <div id="excluir-reserva" class="ui primary button">Excluir</div>

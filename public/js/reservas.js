@@ -38,13 +38,16 @@
                 sala : inputSalas.val()
             }, function(data) {
 
+                if (data.erro) {
+                    return alert(data.mensagem);
+                }
+
                 _this.adicionar(hora, salas.get(inputSalas.val()), data.id, true);
                 $('#adicionar-reserva').modal('hide')
             })
         });
 
         $("#horario-reservar").text(hora.day + "/" + hora.month + "/" + hora.year + " " + hora.hour + ":00")
-
         $('#adicionar-reserva').modal('show')
     }
 
@@ -81,6 +84,12 @@
                         })
                     }
                 })
+
+                var d = new Date(data.inicio);
+
+                $("#horario-reservado").text(d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" "+d.getHours()+":00");
+                $("#usuario-reservado").text(data.usuario);
+                $("#sala-reservado").text(data.sala);
 
                 $("#detalhes-reserva").modal("show");
             }).fail(function(err) {
